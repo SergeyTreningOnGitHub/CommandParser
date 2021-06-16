@@ -9,7 +9,7 @@ using namespace std;
 */
 
 TEST(CommandParser, TestEmptyInput){
-    istringstream in("EOF");
+    istringstream in;
     ostringstream out;    
 
     CommandParser cmd_parser(1, in, out);
@@ -20,7 +20,7 @@ TEST(CommandParser, TestEmptyInput){
 }
 
 TEST(CommandParser, TestIncompleteStaticPack){
-    istringstream in("cmd1\ncmd2\nEOF");
+    istringstream in("cmd1\ncmd2\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -32,7 +32,7 @@ TEST(CommandParser, TestIncompleteStaticPack){
 }
 
 TEST(CommandParser, TestCompleteStaticPack){
-    istringstream in ("cmd1\ncmd2\ncmd3\nEOF");
+    istringstream in ("cmd1\ncmd2\ncmd3\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -44,7 +44,7 @@ TEST(CommandParser, TestCompleteStaticPack){
 }
 
 TEST(CommandParser, TestCompleteIncompleteStaticPack){
-    istringstream in("cmd1\ncmd2\ncmd3\ncmd4\nEOF");
+    istringstream in("cmd1\ncmd2\ncmd3\ncmd4\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -56,7 +56,7 @@ TEST(CommandParser, TestCompleteIncompleteStaticPack){
 }
 
 TEST(CommandParser, TestIncompleteDynamicPack){
-    istringstream in("{\ncmd1\ncmd2\nEOF");
+    istringstream in("{\ncmd1\ncmd2\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -68,7 +68,7 @@ TEST(CommandParser, TestIncompleteDynamicPack){
 }
 
 TEST(CommandParser, TestEnclosedIncompleteDynamicPack){
-    istringstream in("{\ncmd1\n{\ncmd2\n}\nEOF");
+    istringstream in("{\ncmd1\n{\ncmd2\n}\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -80,7 +80,7 @@ TEST(CommandParser, TestEnclosedIncompleteDynamicPack){
 }
 
 TEST(CommandParser, TestCompleteDynamicPack){
-    istringstream in("{\ncmd1\ncmd2\n}\nEOF");
+    istringstream in("{\ncmd1\ncmd2\n}\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -92,7 +92,7 @@ TEST(CommandParser, TestCompleteDynamicPack){
 }
 
 TEST(CommandParser, TestEnclosedCompleteDynamicPack){
-    istringstream in("{\ncmd1\n{\ncmd2\n}\ncmd3\n}\nEOF");
+    istringstream in("{\ncmd1\n{\ncmd2\n}\ncmd3\n}\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -104,7 +104,7 @@ TEST(CommandParser, TestEnclosedCompleteDynamicPack){
 }
 
 TEST(CommandParser, TestIncompleteStaticDynamicPack){
-    istringstream in("cmd1\ncmd2\n{\ncmd1\n{\ncmd2\n}\ncmd3\nEOF");
+    istringstream in("cmd1\ncmd2\n{\ncmd1\n{\ncmd2\n}\ncmd3\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -116,7 +116,7 @@ TEST(CommandParser, TestIncompleteStaticDynamicPack){
 }
 
 TEST(CommandParser, TestIncompleteStaticCompleteDynamicPack){
-    istringstream in("cmd1\ncmd2\n{\ncmd1\n{\ncmd2\n}\ncmd3\n}\nEOF");
+    istringstream in("cmd1\ncmd2\n{\ncmd1\n{\ncmd2\n}\ncmd3\n}\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -128,7 +128,7 @@ TEST(CommandParser, TestIncompleteStaticCompleteDynamicPack){
 }
 
 TEST(CommandParser, TestCompleteStaticIncompleteDynamicPack){
-    istringstream in("cmd1\ncmd2\ncmd3\n{\ncmd1\n{\ncmd2\n}\ncmd3\nEOF");
+    istringstream in("cmd1\ncmd2\ncmd3\n{\ncmd1\n{\ncmd2\n}\ncmd3\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);
@@ -140,7 +140,7 @@ TEST(CommandParser, TestCompleteStaticIncompleteDynamicPack){
 }
 
 TEST(CommandParser, TestCompleteStaticDynamicPack){
-    istringstream in("cmd1\ncmd2\ncmd3\n{\ncmd1\n{\ncmd2\n}\ncmd3\n}\nEOF");
+    istringstream in("cmd1\ncmd2\ncmd3\n{\ncmd1\n{\ncmd2\n}\ncmd3\n}\n");
     ostringstream out;    
 
     CommandParser cmd_parser(3, in, out);

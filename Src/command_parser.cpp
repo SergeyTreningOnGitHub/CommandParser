@@ -3,145 +3,147 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
-#include <cassert>
 
 using namespace std;
 
-void PackState::flush_commands() {
+CommandParser::PackState::PackState() : next_state_(CommandParser::NextState::NONE) {}
+
+void CommandParser::PackState::FlushCommands(ostream& out) {
 	if (cmds_.empty())
 		return;
 
-	string res;	    
+	string res;
 
-	res += "bulk: ";
-	for (size_t i = 0; i < cmds_.size(); i++) {
-		if (i < cmds_.size() - 1) {
-			res += cmds_[i] + ", ";
-		}
-		else {
-			res += cmds_[i];			
-		}
+	res += "bulk: " + cmds_[0];
+	for (size_t i = 1; i < cmds_.size(); i++) {
+		res += ", " + cmds_[i];
 	}
 
-	ostream& out = cmd_parser_->GetOutputStream();
 	out << res << endl;
-
-	if(cmd_parser_->IsLogEnabled()){
-		ostringstream name_file;
-		name_file << time_creation << ".log";
-		ofstream out_file(name_file.str());
-		out_file << res << endl;
-	}
 }
 
-void PackState::add_cmd(const string& cmd) {
+CommandParser::NextState CommandParser::PackState::GetNextState() const {
+	return next_state_;
+}
+
+string CommandParser::PackState::GetFileName() const {
+	ostringstream name_file;
+	name_file << time_creation_ << ".log";
+	return name_file.str();
+}
+
+void CommandParser::PackState::HandleCommand(const string& cmd) {
 	if (cmds_.empty())
-		time_creation = chrono::system_clock::to_time_t(chrono::system_clock::now());
+		time_creation_ = chrono::system_clock::to_time_t(chrono::system_clock::now());
 
 	cmds_.push_back(cmd);
 }
 
-PackState::PackState(CommandParser* cmd_parser) : cmd_parser_(cmd_parser) {}
-	
-
-StaticState::StaticState(CommandParser* cmd_parser, uint32_t size_pack) : PackState(cmd_parser), size_pack_(size_pack) {
+CommandParser::StaticState::StaticState(uint32_t size_pack) : size_pack_(size_pack) {
 	cmds_.reserve(size_pack);
 }
 
-void StaticState::HandleCommand(const string& cmd){
+void CommandParser::StaticState::HandleCommand(const string& cmd) {
 	if (cmd != "{") {
-		add_cmd(cmd);
+		PackState::HandleCommand(cmd);
 		if (cmds_.size() == size_pack_) {
-			flush_commands();
-			cmds_.clear();
+			next_state_ = CommandParser::NextState::STATIC;
 		}
 	}
 	else {
-		flush_commands();		
-		cmd_parser_->ChangeToDynamic();
+		next_state_ = CommandParser::NextState::DYNAMIC;
 	}
 }
 
-void StaticState::SetEndState(){
-	flush_commands();
+void CommandParser::StaticState::SetEndStream() {
+	next_state_ = CommandParser::NextState::STATIC;
+}
+
+void CommandParser::DynamicState::SetEndStream() {
+	next_state_ = CommandParser::NextState::STATIC;
 	cmds_.clear();
 }
 
-DynamicState::DynamicState(CommandParser* cmd_parser) : PackState(cmd_parser), brace_counter_(1) {}
+CommandParser::DynamicState::DynamicState() : brace_counter_(1) {}
 
-void DynamicState::HandleCommand(const string& cmd) {
+void CommandParser::DynamicState::HandleCommand(const string& cmd) {
 	if (cmd == "}") {
 		--brace_counter_;
 		if (brace_counter_ == 0) {
-			flush_commands();			
-			cmd_parser_->ChangeToStatic();
+			next_state_ = CommandParser::NextState::STATIC;
 		}
 	}
 	else if (cmd == "{") {
 		++brace_counter_;
 	}
 	else {
-		add_cmd(cmd);
+		PackState::HandleCommand(cmd);
 	}
 }
 
-void DynamicState::SetEndState(){
-	cmds_.clear();
+void CommandParser::change_to_static() {
+	pack_state_ = make_unique<StaticState>(size_static_pack_);
 }
 
-CommandParser::CommandParser(uint32_t size_static_pack, istream& in, ostream& out) : 
-                                                is_end_stream_(false),
-												is_enable_log_(false),
-												 size_static_pack_(size_static_pack),
-												  in_(in),
-												   out_(out) {
-	assert(size_static_pack_ > 0);
-    pack_state_ = make_unique<StaticState>(this, size_static_pack_);
+void CommandParser::change_to_dynamic() {
+	pack_state_ = make_unique<DynamicState>();
 }
 
-void CommandParser::ChangeToStatic() {
-	pack_state_ = make_unique<StaticState>(this, size_static_pack_);
-}
+CommandParser::CommandParser(uint32_t size_static_pack, istream& in, ostream& out) :
+	is_enable_log_(false),
+	size_static_pack_(size_static_pack),
+	in_(in),
+	out_(out)
 
-void CommandParser::ChangeToDynamic() {
-	pack_state_ = make_unique<DynamicState>(this);	
+{
+	change_to_static();
 }
 
 void CommandParser::HandleCommand() {
+	if (IsEndStream())
+		return;
+
 	string str;
 	getline(in_, str);
 
-	if (str == END_STREAM) {
-		pack_state_->SetEndState();
-		is_end_stream_ = true;
+	if (IsEndStream()) {
+		pack_state_->SetEndStream();
+		pack_state_->FlushCommands(out_);
+		if (is_enable_log_) {
+			ofstream out_file(pack_state_->GetFileName());
+			pack_state_->FlushCommands(out_file);
+		}
+
 		return;
 	}
 
 	pack_state_->HandleCommand(str);
+
+	if (pack_state_->GetNextState() != CommandParser::NextState::NONE) {
+		pack_state_->FlushCommands(out_);
+
+		if (is_enable_log_) {
+			ofstream out_file(pack_state_->GetFileName());
+			pack_state_->FlushCommands(out_file);
+		}
+
+		if (pack_state_->GetNextState() == CommandParser::NextState::STATIC) {
+			change_to_static();
+		}
+		else if (pack_state_->GetNextState() == CommandParser::NextState::DYNAMIC) {
+			change_to_dynamic();
+		}
+	}
 }
 
-ostream& CommandParser::GetOutputStream(){
-	return out_;
+bool CommandParser::IsEndStream() const {
+	return in_.eof();
 }
 
-istream& CommandParser::GetInputStream(){
-	return in_;
-}
-
-bool CommandParser::IsEndStream() const{
-	return is_end_stream_;
-}
-
-bool CommandParser::IsLogEnabled() const{
-	return is_enable_log_;
-}
-
-void CommandParser::EnableLog(){
+void CommandParser::EnableLog() {
 	is_enable_log_ = true;
 }
 
-void CommandParser::DisableLog(){
+void CommandParser::DisableLog() {
 	is_enable_log_ = false;
 }
-
-const string CommandParser::END_STREAM = "EOF";

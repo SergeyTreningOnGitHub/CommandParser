@@ -4,64 +4,61 @@
 #include<vector>
 #include<string>
 #include<memory>
+#include<iostream>
 
 class CommandParser;
 
-class PackState {
-	time_t time_creation;
-protected:
-	std::vector<std::string> cmds_;
-	CommandParser* cmd_parser_;
-	void flush_commands();
-	void add_cmd(const std::string& cmd);
+class CommandParser {
+	enum class NextState { NONE, STATIC, DYNAMIC };
 
-public:
-	PackState(CommandParser* pack);
-	virtual void HandleCommand(const std::string& cmd) = 0;
-	virtual void SetEndState() = 0;	
-};
+	class PackState {
+		time_t time_creation_;
+	protected:
+		std::vector<std::string> cmds_;
+		NextState next_state_;
+	public:
+		PackState();
+		void FlushCommands(std::ostream& out);
+		NextState GetNextState() const;
+		std::string    GetFileName() const;
 
-class StaticState : public PackState {
-	uint32_t size_pack_;
-public:
-	StaticState(CommandParser* pack, uint32_t size_pack);
+		virtual void HandleCommand(const std::string& cmd);
+		virtual void SetEndStream() = 0;
+		virtual ~PackState() {}
+	};
 
-	void HandleCommand(const std::string& cmd) override;
-	void SetEndState() override;	
-};
+	class StaticState : public PackState {
+		uint32_t size_pack_;
+	public:
+		StaticState(uint32_t size_pack);
+		void HandleCommand(const std::string& cmd) override;
+		void SetEndStream() override;
+	};
 
-class DynamicState : public PackState {
-	uint32_t brace_counter_;
-public:
-	DynamicState(CommandParser* pack);
+	class DynamicState : public PackState {
+		uint32_t brace_counter_;
+	public:
+		DynamicState();
+		void HandleCommand(const std::string& cmd) override;
+		void SetEndStream() override;
+	};
+private:
 
-	void HandleCommand(const std::string& cmd) override;
-	void SetEndState() override;	
-};
-
-class CommandParser {	
-	bool is_end_stream_;
 	bool is_enable_log_;
 	uint32_t size_static_pack_;
-    std::istream& in_;
-    std::ostream& out_;
+	std::istream& in_;
+	std::ostream& out_;
 
 	std::unique_ptr<PackState> pack_state_;
-	static const std::string END_STREAM;
 
+	void change_to_static();
+	void change_to_dynamic();
 public:
-	friend class PackState;
+
 	CommandParser(uint32_t size_static_pack, std::istream& in, std::ostream& out);
-
-	void ChangeToStatic();
-	void ChangeToDynamic();
-
-    std::istream& GetInputStream();
-    std::ostream& GetOutputStream();
 
 	void HandleCommand();
 	bool IsEndStream() const;
-	bool IsLogEnabled() const;
 	void EnableLog();
 	void DisableLog();
 };
