@@ -63,10 +63,11 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classCommandParser-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CommandParser Class Reference</div>  </div>
@@ -75,33 +76,45 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="command__parser_8h_source.html">command_parser.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser_1_1DynamicState.html">DynamicState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser_1_1PackState.html">PackState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser_1_1StaticState.html">StaticState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4bafe52c90c18840dd8bfab6244b8656"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a4bafe52c90c18840dd8bfab6244b8656">CommandParser</a> (uint32_t size_static_pack, std::istream &amp;in, std::ostream &amp;out)</td></tr>
 <tr class="separator:a4bafe52c90c18840dd8bfab6244b8656"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076dbd1e3be9f0bc3fda5e108ca3a342"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a076dbd1e3be9f0bc3fda5e108ca3a342">ChangeToStatic</a> ()</td></tr>
-<tr class="separator:a076dbd1e3be9f0bc3fda5e108ca3a342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade8cc93a3d22ee31200f7c3ac59ef692"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#ade8cc93a3d22ee31200f7c3ac59ef692">ChangeToDynamic</a> ()</td></tr>
-<tr class="separator:ade8cc93a3d22ee31200f7c3ac59ef692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b8d06f4d48d07df9a15c6f288633feb"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a6b8d06f4d48d07df9a15c6f288633feb">GetInputStream</a> ()</td></tr>
-<tr class="separator:a6b8d06f4d48d07df9a15c6f288633feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba69a7a44f9970fffece0999e98bc43d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#aba69a7a44f9970fffece0999e98bc43d">GetOutputStream</a> ()</td></tr>
-<tr class="separator:aba69a7a44f9970fffece0999e98bc43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a513d422b183c94f9a0e7cdae817985"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a8a513d422b183c94f9a0e7cdae817985">HandleCommand</a> ()</td></tr>
 <tr class="separator:a8a513d422b183c94f9a0e7cdae817985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe03f29600d3f06fabd28d6607415989"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#afe03f29600d3f06fabd28d6607415989">IsEndStream</a> () const</td></tr>
 <tr class="separator:afe03f29600d3f06fabd28d6607415989"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaa1973989d0a7eebb243b54c9d5953d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#afaa1973989d0a7eebb243b54c9d5953d">IsLogEnabled</a> () const</td></tr>
-<tr class="separator:afaa1973989d0a7eebb243b54c9d5953d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c3823ca97d4a61ad3202ef9b27c257b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a0c3823ca97d4a61ad3202ef9b27c257b">EnableLog</a> ()</td></tr>
 <tr class="separator:a0c3823ca97d4a61ad3202ef9b27c257b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68cea1e9fe59408a0f7030b21d3366b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a68cea1e9fe59408a0f7030b21d3366b6">DisableLog</a> ()</td></tr>
 <tr class="separator:a68cea1e9fe59408a0f7030b21d3366b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a455787e20d6925467bb5de326d42d656"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a455787e20d6925467bb5de326d42d656">NextState</a> { <a class="el" href="classCommandParser.html#a455787e20d6925467bb5de326d42d656ab50339a10e1de285ac99d4c3990b8693">NONE</a>
+, <a class="el" href="classCommandParser.html#a455787e20d6925467bb5de326d42d656afe6f99ef1ec99efbdc19a9786cf1facc">STATIC</a>
+, <a class="el" href="classCommandParser.html#a455787e20d6925467bb5de326d42d656a0fcc90da4811c877ba9f9c12f7d60bc9">DYNAMIC</a>
+ }</td></tr>
+<tr class="separator:a455787e20d6925467bb5de326d42d656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a06fb2213f2229d026599a3c09e90ba06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a06fb2213f2229d026599a3c09e90ba06">change_to_static</a> ()</td></tr>
+<tr class="separator:a06fb2213f2229d026599a3c09e90ba06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a877e3756a59997acdc8c89a302ac5c32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a877e3756a59997acdc8c89a302ac5c32">change_to_dynamic</a> ()</td></tr>
+<tr class="separator:a877e3756a59997acdc8c89a302ac5c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a15945e5f4efdee627ae49985a64971d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a15945e5f4efdee627ae49985a64971d2">is_end_stream_</a></td></tr>
-<tr class="separator:a15945e5f4efdee627ae49985a64971d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60825e1f482ecb9e0923cd061b824cb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a60825e1f482ecb9e0923cd061b824cb4">is_enable_log_</a></td></tr>
 <tr class="separator:a60825e1f482ecb9e0923cd061b824cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a449c48e75f26461e1be3e57a3a7cf442"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a449c48e75f26461e1be3e57a3a7cf442">size_static_pack_</a></td></tr>
@@ -110,19 +123,37 @@ Private Attributes</h2></td></tr>
 <tr class="separator:addfc07dae6082b8ea2e0d6aa23b36818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab48beff53e636edc5b38775c2f7fb388"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#ab48beff53e636edc5b38775c2f7fb388">out_</a></td></tr>
 <tr class="separator:ab48beff53e636edc5b38775c2f7fb388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cf20378d6be1edada39e0fa5df97128"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classPackState.html">PackState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a3cf20378d6be1edada39e0fa5df97128">pack_state_</a></td></tr>
+<tr class="memitem:a3cf20378d6be1edada39e0fa5df97128"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classCommandParser_1_1PackState.html">PackState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a3cf20378d6be1edada39e0fa5df97128">pack_state_</a></td></tr>
 <tr class="separator:a3cf20378d6be1edada39e0fa5df97128"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
-Static Private Attributes</h2></td></tr>
-<tr class="memitem:a472dc74ccaa8ca24a69e7937fdac5850"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a472dc74ccaa8ca24a69e7937fdac5850">END_STREAM</a> = &quot;EOF&quot;</td></tr>
-<tr class="separator:a472dc74ccaa8ca24a69e7937fdac5850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a5835c6c70d59b71b5fd668682703feb1"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandParser.html#a5835c6c70d59b71b5fd668682703feb1">PackState</a></td></tr>
-<tr class="separator:a5835c6c70d59b71b5fd668682703feb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a455787e20d6925467bb5de326d42d656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455787e20d6925467bb5de326d42d656">&#9670;&nbsp;</a></span>NextState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classCommandParser.html#a455787e20d6925467bb5de326d42d656">CommandParser::NextState</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a455787e20d6925467bb5de326d42d656ab50339a10e1de285ac99d4c3990b8693"></a>NONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a455787e20d6925467bb5de326d42d656afe6f99ef1ec99efbdc19a9786cf1facc"></a>STATIC&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a455787e20d6925467bb5de326d42d656a0fcc90da4811c877ba9f9c12f7d60bc9"></a>DYNAMIC&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4bafe52c90c18840dd8bfab6244b8656"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4bafe52c90c18840dd8bfab6244b8656">&#9670;&nbsp;</a></span>CommandParser()</h2>
@@ -159,36 +190,52 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ade8cc93a3d22ee31200f7c3ac59ef692"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade8cc93a3d22ee31200f7c3ac59ef692">&#9670;&nbsp;</a></span>ChangeToDynamic()</h2>
+<a id="a877e3756a59997acdc8c89a302ac5c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a877e3756a59997acdc8c89a302ac5c32">&#9670;&nbsp;</a></span>change_to_dynamic()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CommandParser::ChangeToDynamic </td>
+          <td class="memname">void CommandParser::change_to_dynamic </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a076dbd1e3be9f0bc3fda5e108ca3a342"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a076dbd1e3be9f0bc3fda5e108ca3a342">&#9670;&nbsp;</a></span>ChangeToStatic()</h2>
+<a id="a06fb2213f2229d026599a3c09e90ba06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06fb2213f2229d026599a3c09e90ba06">&#9670;&nbsp;</a></span>change_to_static()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CommandParser::ChangeToStatic </td>
+          <td class="memname">void CommandParser::change_to_static </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -218,40 +265,6 @@ Friends</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void CommandParser::EnableLog </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6b8d06f4d48d07df9a15c6f288633feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b8d06f4d48d07df9a15c6f288633feb">&#9670;&nbsp;</a></span>GetInputStream()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">istream &amp; CommandParser::GetInputStream </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aba69a7a44f9970fffece0999e98bc43d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba69a7a44f9970fffece0999e98bc43d">&#9670;&nbsp;</a></span>GetOutputStream()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ostream &amp; CommandParser::GetOutputStream </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -295,69 +308,7 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="afaa1973989d0a7eebb243b54c9d5953d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaa1973989d0a7eebb243b54c9d5953d">&#9670;&nbsp;</a></span>IsLogEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CommandParser::IsLogEnabled </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a5835c6c70d59b71b5fd668682703feb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5835c6c70d59b71b5fd668682703feb1">&#9670;&nbsp;</a></span>PackState</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="classPackState.html">PackState</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a472dc74ccaa8ca24a69e7937fdac5850"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a472dc74ccaa8ca24a69e7937fdac5850">&#9670;&nbsp;</a></span>END_STREAM</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const string CommandParser::END_STREAM = &quot;EOF&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="addfc07dae6082b8ea2e0d6aa23b36818"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#addfc07dae6082b8ea2e0d6aa23b36818">&#9670;&nbsp;</a></span>in_</h2>
 
@@ -402,28 +353,6 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a15945e5f4efdee627ae49985a64971d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15945e5f4efdee627ae49985a64971d2">&#9670;&nbsp;</a></span>is_end_stream_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CommandParser::is_end_stream_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab48beff53e636edc5b38775c2f7fb388"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab48beff53e636edc5b38775c2f7fb388">&#9670;&nbsp;</a></span>out_</h2>
 
@@ -456,7 +385,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classPackState.html">PackState</a>&gt; CommandParser::pack_state_</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classCommandParser_1_1PackState.html">PackState</a>&gt; CommandParser::pack_state_</td>
         </tr>
       </table>
   </td>
